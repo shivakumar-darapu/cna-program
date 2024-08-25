@@ -1,0 +1,5 @@
+# Allow only specific users to approve merges to QA
+/QA @shiv
+
+# Allow only specific users to approve merges to Prod
+/main @skdarapu
