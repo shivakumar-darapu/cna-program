@@ -1,0 +1,17 @@
+# .github/workflows/restrict-qa-merge.yml
+name: Restrict QA Branch Merge
+
+on:
+  pull_request:
+    branches:
+      - test
+
+jobs:
+  restrict-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check source branch
+        if: github.base_ref == 'test' && github.head_ref != 'dev'
+        run: |
+          echo "Only merges from 'dev' branch to 'test' branch are allowed."
+          exit 1
