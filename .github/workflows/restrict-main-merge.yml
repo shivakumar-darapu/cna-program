@@ -1,0 +1,17 @@
+# .github/workflows/restrict-dev-merge.yml
+name: Restrict main Branch Merge
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  restrict-merge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check source branch
+        if: github.base_ref == 'main' && github.head_ref != 'test'
+        run: |
+          echo "Only merges from 'test' branch to 'main' branch are allowed."
+          exit 1
